@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E7C601A32773CF9600053CEC /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C601A22773CF9600053CEC /* Transition.swift */; };
 		E7C601A52773D3B500053CEC /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C601A42773D3B500053CEC /* LazyView.swift */; };
+		E7C601AF2773F6EF00053CEC /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = E7C601AE2773F6EF00053CEC /* Networking */; };
 		E7E1C9A02771083B0012D2B0 /* SU02App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E1C99F2771083B0012D2B0 /* SU02App.swift */; };
 		E7E1C9A22771083B0012D2B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E1C9A12771083B0012D2B0 /* ContentView.swift */; };
 		E7E1C9A42771083D0012D2B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7E1C9A32771083D0012D2B0 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		E7C601A22773CF9600053CEC /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
 		E7C601A42773D3B500053CEC /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
+		E7C601AD2773F6D200053CEC /* Networking */ = {isa = PBXFileReference; lastKnownFileType = text; name = Networking; path = Modules/Networking; sourceTree = SOURCE_ROOT; };
 		E7E1C99C2771083B0012D2B0 /* SU02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SU02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7E1C99F2771083B0012D2B0 /* SU02App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SU02App.swift; sourceTree = "<group>"; };
 		E7E1C9A12771083B0012D2B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7C601AF2773F6EF00053CEC /* Networking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,15 +52,16 @@
 		E7C601A62773D42C00053CEC /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				E7C601A42773D3B500053CEC /* LazyView.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
-		E7C601A82773F41800053CEC /* Modules */ = {
+		E7C601AA2773F48700053CEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Modules;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E7E1C9932771083B0012D2B0 = {
@@ -65,6 +69,7 @@
 			children = (
 				E7E1C99E2771083B0012D2B0 /* SU02 */,
 				E7E1C99D2771083B0012D2B0 /* Products */,
+				E7C601AA2773F48700053CEC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,9 +84,8 @@
 		E7E1C99E2771083B0012D2B0 /* SU02 */ = {
 			isa = PBXGroup;
 			children = (
-				E7C601A82773F41800053CEC /* Modules */,
+				E7C601AD2773F6D200053CEC /* Networking */,
 				E7C601A62773D42C00053CEC /* Modifiers */,
-				E7C601A42773D3B500053CEC /* LazyView.swift */,
 				E7E1C9BD277116950012D2B0 /* extentions */,
 				E7E1C9AD2771094E0012D2B0 /* Navigation */,
 				E7E1C99F2771083B0012D2B0 /* SU02App.swift */,
@@ -144,6 +148,9 @@
 			dependencies = (
 			);
 			name = SU02;
+			packageProductDependencies = (
+				E7C601AE2773F6EF00053CEC /* Networking */,
+			);
 			productName = SU02;
 			productReference = E7E1C99C2771083B0012D2B0 /* SU02.app */;
 			productType = "com.apple.product-type.application";
@@ -409,6 +416,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E7C601AE2773F6EF00053CEC /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E7E1C9942771083B0012D2B0 /* Project object */;
 }
