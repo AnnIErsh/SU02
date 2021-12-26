@@ -8,7 +8,7 @@ import Foundation
 import SwiftUI
 
 struct NavigationContainerView<Content: View>: View {
-    @ObservedObject var viewModel = NavigationContainerViewModel()
+    @ObservedObject var viewModel: NavigationContainerViewModel = .init()
     private let content: Content
     private let transition: (push: AnyTransition, pop: AnyTransition)
     

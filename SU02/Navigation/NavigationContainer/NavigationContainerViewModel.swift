@@ -18,6 +18,8 @@ final class NavigationContainerViewModel: ObservableObject {
         }
     }
     
+    init() {}
+    
     func push(screeView: AnyView) {
         self.navigationType = .push
         let screen = Screen(view: screeView)

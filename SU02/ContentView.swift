@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var currentHeadTag: String = "Cars"
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NewsScreen(currentHead: $currentHeadTag)
     }
 }
 
