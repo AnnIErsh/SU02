@@ -33,18 +33,18 @@ final class NewsViewModel: ObservableObject {
         }
         isPageLoading = true
         page += 1
-        DispatchQueue.global(qos: .background).async { [self] in
-            ArticlesAPI.everythingGet(q: currentHeading ?? "Cars",
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            ArticlesAPI.everythingGet(q: self?.currentHeading ?? "Cars",
                                       from: "2021-12-23",
                                       sortBy: "publishedAt",
                                       language: "en",
-                                      //apiKey: "a59e5f24831a4322b535578654582973",
-                                      apiKey: "86346ae4bf054d819cc1d938a0ba75d7",
+                                      apiKey: "a59e5f24831a4322b535578654582973",
+                                      //apiKey: "86346ae4bf054d819cc1d938a0ba75d7",
                                       //apiKey: "aebbd82e5b604687a498d79cc7dc24f1",
-                                      page: self.page) { list, error in
-                self.totalResults = list?.totalResults ?? Int.max
-                self.articles.append(contentsOf: list?.articles ?? [])
-                self.isPageLoading = false
+                                      page: self?.page) { list, error in
+                self?.totalResults = list?.totalResults ?? Int.max
+                self?.articles.append(contentsOf: list?.articles ?? [])
+                self?.isPageLoading = false
             }
         }
     }

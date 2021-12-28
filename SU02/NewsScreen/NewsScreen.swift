@@ -11,6 +11,8 @@ import SwiftUI
 struct NewsScreen: View {
     @StateObject var newsViewModel: NewsViewModel = .init()
     @Binding var currentHead: String
+    @EnvironmentObject var routModel: NavigationContainerViewModel
+
     var body: some View {
         VStack {
             Button {
@@ -20,8 +22,11 @@ struct NewsScreen: View {
                     .background(Color.gray)
                     .foregroundColor(.white)
             }
+            list
         }
-        list
+        .onAppear {
+            newsViewModel.loadNextPage()
+        }
     }
     
     var list: some View {
@@ -29,6 +34,10 @@ struct NewsScreen: View {
             Section {
                 ForEach(newsViewModel.articles) { article in
                     NewsArticleCell(article: article)
+                        .onTapGesture {
+                            //routModel.push(screeView: NewsArticleCell(article: article).lazy.toAnyView())
+                            routModel.push(screeView: NewsArticleDetail().lazy.toAnyView())
+                        }
                         .onAppear {
                             if newsViewModel.articles.isLast(article) {
                                 newsViewModel.loadNextPage()
@@ -67,5 +76,23 @@ struct NewsArticleCell: View {
     
     var body: some View {
         Text(article.title ?? "")
+    }
+}
+
+struct NewsArticleDetail: View {
+    @EnvironmentObject var routeModel: NavigationContainerViewModel
+    
+    var body: some View {
+        
+        VStack {
+            Text("Article info")
+                .padding()
+                .foregroundColor(.red)
+            Button {
+                self.routeModel.pop()
+            } label: {
+                Text("back")
+            }
+        }
     }
 }
