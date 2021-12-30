@@ -10,9 +10,7 @@ import SwiftUI
 
 struct NewsScreen: View {
     @ObservedObject var newsViewModel: NewsViewModel = .init()
-    @EnvironmentObject var detailViewModel: DetailViewModel
     @Binding var currentHead: String
-    @EnvironmentObject var routModel: NavigationContainerViewModel
     var body: some View {
         VStack {
             Button {
@@ -31,13 +29,9 @@ struct NewsScreen: View {
     var list: some View {
         List {
             Section {
-                ForEach(newsViewModel.articles.lazy) { article in
+                ForEach(newsViewModel.articles) { article in
                     NewsArticleCell(article: article)
                         .showActivityIdicator(newsViewModel.isPageLoading && newsViewModel.articles.isLast(article))
-                        .onTapGesture {
-                            transferDataToDetailView(article)
-                            routModel.push(screeView: DetailScreen().toAnyView())
-                        }
                         .onAppear {
                             if newsViewModel.articles.isLast(article) {
                                 newsViewModel.loadNextPage()
@@ -73,37 +67,32 @@ struct NewsScreen: View {
             Text("Let's read about \(currentHead)")
         }
     }
+}
+
+struct NewsArticleCell: View {
+    @EnvironmentObject var routModel: NavigationContainerViewModel
+    @EnvironmentObject var detailViewModel: DetailViewModel
+    @State var scale: Bool = false
+    var article: Article
+    
+    var body: some View {
+        Text(article.title ?? article.id)
+            .scaleEffect(scale ? 2.0 : 1.0)
+            .onTapGesture {
+                transferDataToDetailView(article)
+                withAnimation(Animation.easeInOut(duration: 1.1)) {
+                    scale.toggle()
+                }
+                withAnimation(Animation.default.delay(1.1)) {
+                    routModel.push(screeView: DetailScreen().lazy.toAnyView())
+                }
+            }
+    }
     
     func transferDataToDetailView(_ article: Article) {
         detailViewModel.data.author = article.author
         detailViewModel.data.content = article.content
         detailViewModel.data.articleName = article.title
         detailViewModel.data.pictureURL = article.urlToImage
-    }
-}
-
-struct NewsArticleCell: View {
-    var article: Article
-    
-    var body: some View {
-        Text(article.title ?? article.id)
-    }
-}
-
-struct NewsArticleDetail2: View {
-    @EnvironmentObject var routeModel: NavigationContainerViewModel
-    
-    var body: some View {
-        
-        VStack {
-            Text("Article info2")
-                .padding()
-                .foregroundColor(.red)
-            Button {
-                self.routeModel.popToRoot()
-            } label: {
-                Text("back")
-            }
-        }
     }
 }

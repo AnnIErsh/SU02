@@ -46,11 +46,11 @@ final class NewsViewModel: ObservableObject {
                                       //apiKey: "9f3b3102ab704b7c9a874ee92cdb288f",
                                       page: self?.page) { list, error in
                 if (error != nil) {
-                    print(error?.localizedDescription ?? "")
+                    print(error?.localizedDescription ?? "ERROR: there's nothing to load")
                     return
                 }
                 if list?.status != "ok" {
-                    print("end")
+                    print("list status is KO")
                     return
                 }
                 self?.totalResults = list?.totalResults ?? Int.max
@@ -69,9 +69,5 @@ final class NewsViewModel: ObservableObject {
         isPageLoading = false
         page = 0
         totalResults = Int.max
-    }
-    
-    func scrollToPage() {
-        
     }
 }

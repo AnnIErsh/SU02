@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ActivityIndificator: ViewModifier {
-    
     var isLoading: Bool
     
     func body(content: Content) -> some View {
