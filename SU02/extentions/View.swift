@@ -16,4 +16,9 @@ extension View {
     func toAnyView() -> AnyView {
         AnyView(self)
     }
+    
+    func showActivityIdicator(_ value: Bool) -> some View {
+        ModifiedContent(content: self, modifier: ActivityIndificator(isLoading: value))
+    }
 }
+

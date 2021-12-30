@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var currentHeadTag: String = "Cars"
-    
+    @State var currentHeadTag: String = "Sport Cars"
+ 
     var body: some View {
         NavigationContainerView(transition: Transition.custom(.slide)) {
             NewsScreen(currentHead: $currentHeadTag)
         }
         .environmentObject(NavigationContainerViewModel())
+        .environmentObject(DetailViewModel())
     }
 }

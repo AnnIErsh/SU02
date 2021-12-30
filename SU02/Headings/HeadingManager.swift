@@ -9,5 +9,5 @@ import Foundation
 
 class HeadingManager {
     static let shared = HeadingManager()
-    lazy var heads = ["Games", "Cars", "Cartoons"]
+    lazy var heads = ["VR Games", "Sport Cars", "Cartoons"]
 }
